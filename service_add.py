@@ -1,4 +1,5 @@
 import os
+import subprocess
 import sys
 import argparse
 from src.Constants import BASE_DIR, CONFIG_DIR
@@ -93,9 +94,11 @@ def main():
                 error_msg = "Exception during write operation invoked: {}".format(e)
                 exit_program(ExitCode.GENERAL_ERROR, error_msg)
 
-    cmd = "systemctl enable " + path_service
-    print("Running command:'{}'".format("systemctl enable " + path_service))
-    os.system(cmd)
+    cmd = ["systemctl", "enable", path_service]
+    print("Running command:'{}'".format(" ".join(cmd)))
+    # Use the argument-list form instead of a shell string so local paths or
+    # service names can never be interpreted as shell syntax.
+    subprocess.check_call(cmd)
 
 
 def get_username():
