@@ -14,10 +14,9 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
-
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
     - name: Set up Python 3.10
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
       with:
         python-version: "3.10"
 
@@ -33,7 +32,7 @@ jobs:
       run: python docs/fsm/graphviz/draw_state_diagrams.py
 
     - name: Build documentation
-      uses: ammaraskar/sphinx-action@master
+      uses: ammaraskar/sphinx-action@c61ac11d9ee097caf8983c10c8b5af5861b32b54 # master
       with:
         docs-folder: docs/
         pre-build-command: |
@@ -43,7 +42,7 @@ jobs:
         build-command: sphinx-build -b html . build
 
     - name: Deploy documentation
-      uses: JamesIves/github-pages-deploy-action@v4.5.0
+      uses: JamesIves/github-pages-deploy-action@65b5dfd4f5bcd3a7403bbc2959c144256167464e # v4.5.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: gh-pages

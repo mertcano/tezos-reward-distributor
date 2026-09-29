@@ -8,13 +8,12 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
-
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
     - name: Login to registry
       run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
     - name: Docker meta
       id: meta
-      uses: docker/metadata-action@v5
+      uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # v5
       with:
         images: ghcr.io/${{ github.repository_owner }}/tezos-reward-distributor
         tags: |
@@ -23,7 +22,7 @@ jobs:
           type=match,pattern=v(.*),group=1
 
     - name: Push to GHCR
-      uses: docker/build-push-action@v5
+      uses: docker/build-push-action@ca052bb54ab0790a636c9b5f226502c73d547a25 # v5
       with:
         push: true
         tags: ${{ steps.meta.outputs.tags }}
